@@ -33,7 +33,7 @@ You actually have to do this modification to every Print profile you want to use
 
 ### Standalone mode
 Despite being intended as a post-processing script, Uploader can be used completely standalone.
-If run without any options (i.e. double click on the executable) it will first prompt you to select a file you want to upload and ask for IP adress of your printer. It will then proceed with uploading file and ask if you want to print it (similar to rumming in **ask** mode)
+If run without any options (i.e. double click on the executable) it will first prompt you to select a file you want to upload and ask for IP adress of your printer. It will then proceed with uploading file and ask if you want to print it (similar to running in **ask** mode)
 
 Alternatively you can run it from a command line:
 ```
