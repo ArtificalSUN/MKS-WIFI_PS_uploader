@@ -22,13 +22,14 @@ To use Uploader select your Print profile and go to the Output options. Here ins
 ```
 "\path\to\the\python\installation\pythonw.exe" "\path\to\the\script\MKS_WIFI_PS_upload.pyw" ip_address mode;
 ```
-You actually have to do this modification to every Print profile you want to use Uploader for.
 
 ##### ip_address - IP adress of the printer in your local network
 ##### mode - one of the following options:
 + **ask** - when a file is uploaded the script will ask if you wont to immediately start printing it
 + **always** - when a file is uploaded the script will immediately start printing it without asking
 + **never** - when a file is uploaded the script will not start any print job and will not ask anything
+
+You actually have to do this modification to every Print profile you want to use Uploader for.
 
 ### Standalone mode
 Despite being intended as a post-processing script, Uploader can be used completely standalone.
