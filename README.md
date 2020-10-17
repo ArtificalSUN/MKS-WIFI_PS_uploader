@@ -7,7 +7,7 @@ It is written on Python and available in 2 versions:
 + Python script (requires Python 3 with **requests** package)
 + Windows x64 executable (more conwinient, no requirements to run)
 
-I might think about releasing additional executables (like Win32 or linux) if there will be real demand for it. Until then you might always use Python script version.
+I might think about releasing additional executables (like Win32 or linux) if there will be real demand for it. Until then you might always use Python script version (or pack the executable yourself using i.e. pyinstaller)
 
 ### Usage
 ![PS postprocessing script](PS_screenshot.png)
@@ -22,6 +22,7 @@ To use Uploader select your Print profile and go to the Output options. Here ins
 ```
 "\path\to\the\python\installation\pythonw.exe" "\path\to\the\script\MKS_WIFI_PS_upload.pyw" ip_address mode;
 ```
+You actually have to do this modification to every Print profile you want to use Uploader for.
 
 ##### ip_address - IP adress of the printer in your local network
 ##### mode - one of the following options:
