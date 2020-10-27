@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 #  -*- coding: utf-8 -*-
 # author: Victor Shapovalov (@ArtificalSUN), 2020
-# version: 0.2.1
+# version: 0.2.2
 
 import sys, os, requests, io, time
 import socket as pysock
@@ -187,6 +187,7 @@ def startTransfer():
     top.lbl_UploadStatus['text'] = "Done!"
     root.update()
     if mode == "always":
+        time.sleep(3)
         startJob(ip_addr, sd_name)
     elif mode=="never": pass
     else:
