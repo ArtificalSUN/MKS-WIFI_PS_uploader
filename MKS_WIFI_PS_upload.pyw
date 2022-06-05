@@ -180,7 +180,7 @@ def startJob(ip_addr, sd_name):
 
 def startTransfer():
     global ip_addr, localfile, sd_name
-    with open(localfile, 'r') as f:
+    with open(localfile, 'r', encoding="utf-8") as f:
         gcode = f.read()
     body_buffer = BufferReader(gcode.encode(), upload_progress)
     r = requests.post("http://{:s}/upload?X-Filename={:s}".format(ip_addr, sd_name), data=body_buffer, headers={'Content-Type': 'application/octet-stream', 'Connection' : 'keep-alive'})
