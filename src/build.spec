@@ -1,5 +1,4 @@
 a = Analysis(['main.py'],
-             pathex=['C:\\Users\\jackm\\Documents\\Blog Posts\\Gooey_Inno\\.env\\Scripts'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None,
@@ -14,11 +13,8 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           options,
-          gooey_languages, # Add them in to collected files
-          gooey_images, # Same here.
-          name='main',
+          name='MKS_WIFI_PS_upload',
           debug=False,
           strip=None,
           upx=True,
-          console=False,
-          icon=os.path.join(gooey_root, 'images', 'program_icon.ico'))
+          console=False)
