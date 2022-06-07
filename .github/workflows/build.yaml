@@ -51,8 +51,11 @@ jobs:
         base-ref: ${{steps.tag_version.outputs.previous_tag }}
 
     - name: Get the changelog
+      shell: bash
       run: |
-        echo ${{ steps.changelog.outputs.changelog }}
+        cat << "EOF"
+        ${{ steps.changelog.outputs.changelog }}
+        EOF
 
     - name: Create Release
       if: ${{ github.event_name == 'push' }}
