@@ -27,6 +27,7 @@ jobs:
     - name: build with pyinstaller
       run: |
         cd src
+        pip install -r requirements.txt
         pyinstaller --onefile MKS_WIFI_PS_upload.pyw
         ls -l dist/
 
