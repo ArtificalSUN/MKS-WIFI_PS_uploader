@@ -52,7 +52,7 @@ jobs:
 
     - name: Get the changelog
       run: |
-        type ${{ steps.changelog.outputs.changelog }}
+        echo ${{ steps.changelog.outputs.changelog }}
 
     - name: Create Release
       if: ${{ github.event_name == 'push' }}
