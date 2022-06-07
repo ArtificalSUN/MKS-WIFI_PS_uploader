@@ -27,7 +27,8 @@ jobs:
     - name: build with pyinstaller
       run: |
         cd src
-        pyinstaller --onefile MKS_WIFI_PS_upload.pyw 
+        pyinstaller --onefile MKS_WIFI_PS_upload.pyw
+        ls -l dist/
 
     - uses: actions/upload-artifact@v2
       with:
