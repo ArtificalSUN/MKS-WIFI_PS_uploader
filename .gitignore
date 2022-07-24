@@ -1,0 +1,15 @@
+MKS_WIFI_PS_upload.spec
+build/MKS_WIFI_PS_upload/Analysis-00.toc
+build/MKS_WIFI_PS_upload/base_library.zip
+build/MKS_WIFI_PS_upload/EXE-00.toc
+build/MKS_WIFI_PS_upload/MKS_WIFI_PS_upload.exe.manifest
+build/MKS_WIFI_PS_upload/MKS_WIFI_PS_upload.pkg
+build/MKS_WIFI_PS_upload/PKG-00.toc
+build/MKS_WIFI_PS_upload/PYZ-00.pyz
+build/MKS_WIFI_PS_upload/PYZ-00.toc
+build/MKS_WIFI_PS_upload/Tree-00.toc
+build/MKS_WIFI_PS_upload/Tree-01.toc
+build/MKS_WIFI_PS_upload/Tree-02.toc
+build/MKS_WIFI_PS_upload/warn-MKS_WIFI_PS_upload.txt
+build/MKS_WIFI_PS_upload/xref-MKS_WIFI_PS_upload.html
+dist/MKS_WIFI_PS_upload.exe
