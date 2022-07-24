@@ -211,7 +211,12 @@ except IndexError:
     localfile = fldg.askopenfilename()
     ip_addr = smdg.askstring("Printer IP", "Please enter IP adress of the printer")
 
-sd_name = os.path.split(localfile)[1]
+sd_name = os.path.split(localfile)[1] #temporary filename, PrusaSlicer >= 2.4
+
+env_slicer_pp_output_name = os.getenv('SLIC3R_PP_OUTPUT_NAME') #final output filename, PrusaSlicer >= 2.4
+
+if env_slicer_pp_output_name:
+    sd_name = os.path.split(env_slicer_pp_output_name)[1]
 
 root.after(10, startTransfer)
 root.mainloop()
