@@ -3,7 +3,7 @@
 This simple tool allows uploading files and starting print jobs for printers equipped with Makerbase MKS-WIFI module (i.e. Flyingbear Ghost 4S/5)
 
 ### Versions
-It is written on Python and available in 2 versions:
+It is written in Python and available in 2 versions:
 + Python script (requires Python 3 with **requests** package)
 + Windows x64 executable (frozen with pyinstaller, more convinient, no requirements to run)
 
@@ -11,6 +11,7 @@ I might think about releasing additional executables (like Win32 or linux) if th
 
 ### Usage
 ![PS postprocessing script](PS_screenshot.png)
+
 It is originally intended to work as a post-processing script in Prusa Slicer (or it's forks like Slic3r++/SuperSlicer)
 Download the script or executable to the location of your preference (not necessarely the istallation directory of your slicer). However, avoid using system directories like Program Files on Windows, otherwise your slicer might require elevated rights to run the script.
 To use Uploader select your Print profile and go to the Output options. Here insert following command into the Post-processing script
