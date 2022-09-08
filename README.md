@@ -2,6 +2,9 @@
 
 This simple tool allows uploading files and starting print jobs for printers equipped with Makerbase MKS-WIFI module (i.e. Flyingbear Ghost 4S/5)
 
+#### Important notice
+As of now (2021-01-17) the tool works fine. However, I curently have no printers with MKS-WIFI module. I'll do my best to maintain this tool in a working condition, but my debugging and development capabilities for this project are extremely limited.
+
 ### Versions
 It is written in Python and available in 2 versions:
 + Python script (requires Python 3 with **requests** package)

@@ -3,8 +3,72 @@
 # author: Victor Shapovalov (@ArtificalSUN), 2020
 # version: 0.2.2
 
+#this fork converts PrusaSlicer Thumbnail (small : 100x100 and big: 200x200) into TFT Thumbnails
+
 import sys, os, requests, io, time
 import socket as pysock
+
+import base64
+import regex as re # pip install regex
+from os.path import exists
+from io import BytesIO
+from PIL import Image # pip install Image
+
+def generate_tft(img):
+    width, height = img.size
+    if(width == 100):
+        res = ';simage:'
+    else:
+        res = ';;gimage:'
+    pixels = img.convert('RGB')
+    for y in range(width):
+        for x in range(height):
+            r, g, b = pixels.getpixel((x,y))
+            res += rgb2tft(r, g, b)
+        res += '\nM10086 ;'
+    return res
+
+def rgb2tft(r, g, b):
+    #src: mks-wifi plugin : https://github.com/Jeredian/mks-wifi-plugin/blob/develop/MKSPreview.py
+    r = r >> 3
+    g = g >> 2
+    b = b >> 3
+    rgb = (r << 11) | (g << 5) | b
+    return '{:02x}'.format(rgb & 0xFF) + '{:02x}'.format(((rgb >> 8) & 0xFF))
+
+def convertPrusaThumb2TFTThumb(PrusaGCodeFileName): #Replace PrusaSlicer's Thumbnails to TFT's Thumbnails
+    if not exists(PrusaGCodeFileName):
+        return
+    
+    PrusaGCodeDatas = open(PrusaGCodeFileName).read() # ......................................................................... completly loading gcode file
+    
+    #regex for parsing datas with grouped part (matched)
+    s_pattern = '(?<=(; thumbnail begin )([0-9]+)(x)([0-9]+) ([0-9]+)\n)(.*?)(?=; thumbnail end)'
+    pattern = re.compile(s_pattern, re.M|re.I|re.S )
+    
+    TFTGCodeDatas = ''
+    
+    for match in pattern.finditer(PrusaGCodeDatas): #............................................................................ get all needed parts
+        th_width  = match.group(2)
+        th_height = match.group(4)
+        th_size   = match.group(5)
+        
+        try:
+            th_datas  = match.group(6) # ........................................................................................ get image datas (base64)
+            th_datas = th_datas.replace('; ', '').replace('\n', '') # ........................................................... without carry returns, etc
+            stream = BytesIO( base64.b64decode(th_datas) ) # .................................................................... decoding base64
+            image = Image.open(stream).convert("RGB") # ......................................................................... for converting into PIL image
+            stream.close()
+            TFTGCodeDatas += generate_tft(image) # .............................................................................. converts PIL image into TFT GCode
+            s_pattern = '; thumbnail begin .*; thumbnail end'
+            TFTGCodeDatas = TFTGCodeDatas + '\n' +  re.sub( s_pattern, '', PrusaGCodeDatas, flags = re.M|re.I|re.S ) # .......... removes Prusa GCode and inserts TFTG Code
+            fileOut = open(PrusaGCodeFileName, "w") 
+            fileOut.write(TFTGCodeDatas)
+            fileOut.close()
+            
+        except:
+            pass
+    return
 
 try:
     import Tkinter as tk
@@ -180,6 +244,7 @@ def startJob(ip_addr, sd_name):
 
 def startTransfer():
     global ip_addr, localfile, sd_name
+    convertPrusaThumb2TFTThumb(localfile) # ..................................................................................... converting Prusa Thumbs into TFT Thumbs
     with open(localfile, 'r') as f:
         gcode = f.read()
     body_buffer = BufferReader(gcode.encode(), upload_progress)
