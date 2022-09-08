@@ -5,6 +5,10 @@ This simple tool allows uploading files and starting print jobs for printers equ
 #### Important notice
 As of now (2021-01-17) the tool works fine. However, I curently have no printers with MKS-WIFI module. I'll do my best to maintain this tool in a working condition, but my debugging and development capabilities for this project are extremely limited.
 
+### New release
+Version 0.3.1 is released, it has (supposedly) fixed issue with g-code file encoding (thx @Goodsmileduck) and added feature (supposedly working) to convert PrusaSlicer thumbnails (model preview embedded into the gcode file) into TFT thumbnails that can be displayed by the printer (with a stock firmware, similar to what the Cura plugin does). To run this version as a python script one requires to have **Image** and **regex** modules installed (in addition to the previously required **requests** mudule). DISCLAIMER: This version was never tested by me, it is **provided as is** with no warranties or responsibility from my side.
+The old 0.2.2 version is still available in releases.
+
 ### Versions
 It is written in Python and available in 2 versions:
 + Python script (requires Python 3 with **requests** package)
