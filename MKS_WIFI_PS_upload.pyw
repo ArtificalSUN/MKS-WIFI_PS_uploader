@@ -1,11 +1,10 @@
 #! /usr/bin/env python
 #  -*- coding: utf-8 -*-
-# author: Victor Shapovalov (@ArtificalSUN), 2020
+# author: Victor Shapovalov (@ArtificalSUN), 2022
 # PrusaSlicer Thumbnail to TFT Thumbnail converter: @SH1NZ33
+# Fix for PrusaSlicer 2.4 and newer: @WashingtonJunior
 # encoding fix: @Goodsmileduck
-# version: 0.3.1
-
-#this fork converts PrusaSlicer Thumbnail (small : 100x100 and big: 200x200) into TFT Thumbnails
+# version: 0.4.0
 
 import sys, os, requests, io, time
 import socket as pysock
