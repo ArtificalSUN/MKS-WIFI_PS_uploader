@@ -249,20 +249,24 @@ def startTransfer():
     with open(localfile, 'r', encoding="utf-8") as f:
         gcode = f.read()
     body_buffer = BufferReader(gcode.encode(), upload_progress)
-    r = requests.post("http://{:s}/upload?X-Filename={:s}".format(ip_addr, sd_name), data=body_buffer, headers={'Content-Type': 'application/octet-stream', 'Connection' : 'keep-alive'})
-    top.lbl_UploadStatus['text'] = "Done!"
-    root.update()
-    if mode == "always":
+    try:
+        r = requests.post("http://{:s}/upload?X-Filename={:s}".format(ip_addr, sd_name), data=body_buffer, headers={'Content-Type': 'application/octet-stream', 'Connection' : 'keep-alive'})
+        top.lbl_UploadStatus['text'] = "Done!"
+        root.update()
+        if mode == "always":
+            time.sleep(3)
+            startJob(ip_addr, sd_name)
+        elif mode=="never": pass
+        else:
+            printUploaded = msbx.askyesno("Start print job?", "Print uploaded file?")
+            if printUploaded: startJob(ip_addr, sd_name)
         time.sleep(3)
-        startJob(ip_addr, sd_name)
-    elif mode=="never": pass
-    else:
-        printUploaded = msbx.askyesno("Start print job?", "Print uploaded file?")
-        if printUploaded: startJob(ip_addr, sd_name)
-    time.sleep(3)
-    root.destroy()
-    try: exit()
-    except SystemExit as e: pass
+        root.destroy()
+        try: exit()
+        except SystemExit as e: pass
+    except Exception as e:
+        top.lbl_UploadStatus['text'] = "Error!"
+        msbx.showinfo("", str(e))
 
 root = tk.Tk()
 top = Main(root)
